@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>jQuery Adaptive Mosaic grid Gallery 2</title>
+<!-- meta -->
+<meta charset="UTF-8">
+<meta name="author" content="Costacurta Nereo | MBC">
+<meta name="language" content="italian">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="dcterms.rightsHolder" content="Costacurta Nereo">
+<meta name="description" content="A fast, responsive, reliable and lightweight script for mosaic grid galleries with constant [dynamic] height. (C) 2015, MadeByCambiamentico">
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="css/autoadapt-2.min.css">
+<link rel="stylesheet" type="text/css" href="imageLightbox/css/mbc-lightbox-1.1.min.css">
+<style type="text/css">
+body{
+	max-width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
+<!-- js -->
+<!--[if lte IE 8]>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
+<!--<![endif]-->
+<script src="js/autoadapt-2.3.min.js"></script>
+<script src="imageLightbox/js/mbc-lightbox-1.2.min.js"></script>
+<!-- initialize gallery + lightbox -->
+<script src="init.js"></script>
+</head>
+
+<body>
+
+	<h1>jQuery Adaptive Mosaic grid Gallery</h1>
+	<h3>a fast and lightweight jQuery plugin</h3>
+	<h4>version 2.3</h4>
+	
+			<p>
+		<b>Latest version: </b> <a href="http://cambiamentico.altervista.org/experiments/galleries/autoadapt-mosaic-grid/?v=2.3"><i>2.3</i></a><br>
+		<b>Older versions: </b> <a href="http://cambiamentico.altervista.org/experiments/galleries/autoadapt-mosaic-grid/?v=2"><i>2.0</i>, <a href="?v=1"><i>1.0</i></a><br>
+		<span class="small">(last update: 26 Dec 2015)</span>
+	</p>
+	<p>
+		Go to <b>example with lightbox2: </b> <a href="http://cambiamentico.altervista.org/experiments/galleries/autoadapt-mosaic-grid/?v=2.3"><i>2.3a</i></a>
+	</p>
+	<p>A fast, responsive, reliable and lightweight script for mosaic grid galleries with constant [dynamic] height. Images can be added dynamically in every moment</p>
+	<p>Customizable: height range, padding*, min number of images in a row.</p>
+	<p>Compatible with every browser, lightbox-compatible.</p>
+	<p class="small">* padding values must be updated in main CSS too, to work properly. Default is 3px.</p>
+	<p>&copy; 2016, Nereo Costacurta, all rights reserved</p>
+	
+	<br><br>
+	
+	
+	
+	
+	
+	<!-- BEHAVIOR 1 -->
+	
+	<h3>Fill with Javascript only</h3>
+	
+	<div id="gallery" class="adaptiveGallery"></div>
+	<br>
+	<div class="center">
+		<button class="button" id="loadOther">Add 3 random images</button>
+	</div>
+	
+	<h4>HTML</h4>
+	<p>Add an adaptive mosaic gallery <i class="code">&lt;div></i> in <i class="code">&lt;body></i>:</p>
+	<pre><code class="html">
+&lt;div id="gallery" class="adaptiveGallery">&lt;/div>
+	</code></pre>
+	
+	<h4>JAVASCRIPT</h4>
+	<p><b>1)</b> Create a list of objects containing:</p>
+	<pre><code class="javascript">
+var aImages = [
+    {
+        src: [string]              //the image path - mandatory
+        attr: {                    //the standard attributes (href, title etc.)
+            href: '[string]',
+            title: '[string]'
+        }
+        data: {                    //object containing HTML5 data to append to hyperlink (*as attributes!*)
+            lightbox: '[string]',  //e.g. &lt;a data-lightbox="album1">
+            title: '[string]'
+        }
+    },
+    //...
+]
+	</code></pre>
+	<p><b>2)</b> When <i>document ready</i>, add this code:</p>
+	<pre><code class="javascript">
+var myLightbox = new imageLightbox();
+var myGallery = $('#gallery').adaptiveGallery({
+    pad: 3,                       //[3] grid width (space between image boxes)
+    maxD: 300,                    //[300] max height of each box
+    minN: 1,                      //[1] min number of box in a row
+    popSpeed: 200,                //[250] ms delay between chained fade animation for loaded images (0 = all at the same time)
+    onAdd: function(a){           //[function(){}] click callback for new image added to dom tree
+        myLightbox.addToGallery(a);
+    },
+    imgs: aImages                 //[null] array of images 
+});
+	</code></pre>
+	<p><b>3)</b> To add other images use:</p>
+	<pre><code class="javascript">
+var aImagesToAdd = []; //[array] see point 1 
+myGallery[0].adaptiveGallery.add(aImagesToAdd);
+	</code></pre>
+	
+	<br><br>
+	
+	
+	
+	
+	
+	
+	
+	<!-- BEHAVIOR 2 -->
+	
+	<h3>Fill with HTML only</h3>
+	<p>Gallery with existent images tag <i class="code">&lt;img></i>.</p>
+	<div id="gallery2" class="adaptiveGallery"><!--
+		--><div class="box"><a href="img/img03.png"><div class="overlay">custom text 1</div></a> <img src="img/img03.png"> </div><!--
+		--><div class="box"><a href="img/img04.png"><div class="overlay">custom text 2</div></a> <img src="img/img04.png"> </div><!-- no spaces and no new lines
+		--><div class="box"><a href="img/img00.png"><div class="overlay">custom text 3</div></a> <img src="img/img00.png"> </div><!-- between each box
+		--><div class="box"><a href="img/img08.png"><div class="overlay">custom text 4</div></a> <img src="img/img08.png"> </div><!--
+		--><div class="box"><a href="img/img01.png"><div class="overlay">custom text 5</div></a> <img src="img/img01.png"> </div><!--
+		--><div class="box"><a href="img/img02.png"><div class="overlay">custom text 6</div></a> <img src="img/img02.png"> </div><!--
+		--><div class="box"><a href="img/img06.png"><div class="overlay">custom text 7</div></a> <img src="img/img06.png"> </div><!--
+		--><div class="box"><a href="img/img07.png"><div class="overlay">custom text 8</div></a> <img src="img/img07.png"> </div><!--
+		--><div class="box"><a href="img/img05.png"><div class="overlay">custom text 9</div></a> <img src="img/img05.png"> </div><!--
+	--></div>
+	<br>
+	<div class="center">
+		<button class="button" id="loadOther2">Add 1 random image</button>
+	</div>
+	
+	<h4>HTML</h4>
+	<p>Add an adaptive mosaic gallery <i class="code">&lt;div></i> in <i class="code">&lt;body></i>. Fill it with this markup.</p>
+	<p><b>Do not leave spaces or new lines between boxes!</b><br>This example show you how to implement MBC imageLightbox too</p>
+	<pre><code class="html">
+&lt;div id="gallery" class="adaptiveGallery">&lt;!--
+    -->&lt;div class="box">
+        &lt;a href="img/for/lightbox">&lt;div class="overlay">description 1&lt;/div>&lt;/a>
+        &lt;img src="img/to/display">
+    &lt;/div>&lt;!--
+    -->&lt;div class="box">
+        &lt;a href="img/for/lightbox">&lt;div class="overlay">description 2&lt;/div>&lt;/a>
+        &lt;img src="img/to/display">
+    &lt;/div>
+&lt;/div>
+	</code></pre>
+	
+	<h4>JAVASCRIPT</h4>
+	<p><b></b> When <i>document ready</i>, add this code:</p>
+	<pre><code class="javascript">
+var myGallery = $('#gallery')
+.imageLightbox()
+.adaptiveGallery({
+    pad: 3,                       //[3] grid width (space between image boxes)
+    maxD: 300,                    //[300] max height of each box
+    minN: 1,                      //[1] min number of box in a row
+    popSpeed: 200,                //[250] ms delay between chained fade animation for loaded images (0 = all at the same time)
+    onAdd: function(a){           //[function(){}] click callback for new image added to dom tree
+        myGallery[0].lightbox.addToGallery(a);
+    },
+    imgs: aImages                 //[null] array of images 
+});
+	</code></pre>
+
+
+</body>
+
+</html>
