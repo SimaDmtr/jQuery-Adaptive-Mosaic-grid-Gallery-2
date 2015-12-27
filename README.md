@@ -6,6 +6,8 @@ Customizable: height range, padding*, min number of images in a row.<br>
 Compatible with every browser, lightbox-compatible.<br>
 padding values must be updated in main CSS too, to work properly. Default is 3px.
 
+[![JAMGG2 logo](img/screenshot.jpg)](http://cambiamentico.altervista.org/experiments/galleries/autoadapt-mosaic-grid/)
+
 # Documentation
 
 All you need to know about JAMGG2 is here : http://cambiamentico.altervista.org/experiments/galleries/autoadapt-mosaic-grid/
